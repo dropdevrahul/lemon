@@ -1,6 +1,5 @@
-# Tauri + React + Typescript
-
-This template should help get you started developing with Tauri, React and Typescript in Vite.
+# Lemon
+A tauri based WIP UI to browse Lemmy instances, this is a proof of concept that I will be developing in the next few weeks.
 
 ## Recommended IDE Setup
 
