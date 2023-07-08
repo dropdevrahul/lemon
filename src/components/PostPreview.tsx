@@ -17,7 +17,7 @@ import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import ReactMarkdown from 'react-markdown'
 import Typography from '@mui/material/Typography';
-import './post.css'
+import './PostPreview.css'
 import { red } from '@mui/material/colors';
 import {ThumbDown, ThumbUp} from "@mui/icons-material";
 
@@ -53,7 +53,7 @@ export class PostPreviewData {
         this.Name = source["name"];
         this.Body = source["body"];
         this.URL = source["url"];
-        this.Published = source["published"];
+        this.Published = source["published"].slice(0,10);
     }
 }
 
@@ -62,37 +62,47 @@ export function PostPreview(props: any) {
   const [post, setPost] = useState(p);
 
   return (
-   <Grid container>
-     <Grid xs={12} >
-       <Card sx={{ width:"75%",margin:"1em auto", }}>
+       <Card sx={{ width:"75%",margin:"1em auto", maxWidth:"50rem"}}>
           <CardHeader
             avatar={
               <Avatar aria-label="recipe" variant="square" sx={{ width: "80px", height: "80px", overflowY:"hidden" }}>
-              <img src={post.URL}></img>
+              <img src={post.URL} alt=""></img>
               </Avatar>
             }
             title={post.Name}
-            subheader={post.Published}
+            subheader={
+             <span>
+               <span style={{color: "#1976d2", fontWeight:"600", fontStyle:"italic"}} className="header-section">Fediverse</span>
+               <span className="header-section">On</span>
+               <span style={{color: "#1976d2", fontWeight:"400"}} className="header-section">{post.Published}</span>
+             </span>
+            }
           />
+      <CardMedia
+        component="img"
+        image={post.URL}
+        style={ {height: "30em"}}
+        alt=""
+        onError={i => i.currentTarget.setAttribute("style", "display:none")}
+      />
         <CardContent style={{overflowWrap: 'break-word', width: '90%'}}>
             <ReactMarkdown>{post.Body}</ReactMarkdown>
         </CardContent>
         <CardActions>
-            {post.Counts.Upvotes}
-          <IconButton aria-label="add to favorites" color="primary">
-            <ThumbsUpIcon />
-          </IconButton>
-            {post.Counts.Downvotes}
-          <IconButton aria-label="add to favorites" color="secondary">
-            <ThumbsDownIcon />
-          </IconButton>
-            {post.Counts.Comments}
-          <IconButton aria-label="add to favorites">
-            <CommentIcon />
-          </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
+          <span>{post.Counts.Upvotes}</span>
+          <span aria-label="add to favorites" color="primary">
+            <ThumbsUpIcon color="primary"/>
+          </span>
+          
+          <span className="icon-text">{post.Counts.Upvotes}</span>
+          <span aria-label="" color="primary" >
+            <ThumbsDownIcon color="secondary" className="icon"/>
+          </span>
+
+          <span className="icon-text">{post.Counts.Upvotes}</span>
+          <span aria-label="" color="primary"  >
+            <CommentIcon sx={{color: "#555555"}} className="icon"/>
+          </span>
           { /*
           <ExpandMore
             expand={expanded}
@@ -105,7 +115,5 @@ export function PostPreview(props: any) {
           */}
           </CardActions>
         </Card>
-     </Grid>
-   </Grid>
   );
 }

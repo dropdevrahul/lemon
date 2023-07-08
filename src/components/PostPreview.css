@@ -1,0 +1,18 @@
+.icon,.icon-text {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.MuiCardHeader-title {
+  font-size: 1.5em !important;
+}
+
+.icon {
+  margin: 0px;
+}
+
+.header-section {
+  margin: auto 2px;
+  margin-left: 0px;
+  display: inline-block;
+}
