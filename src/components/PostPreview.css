@@ -8,11 +8,32 @@
 }
 
 .icon {
-  margin: 0px;
+  margin: 0px !important;
+}
+
+.card-media img[src=""] {
+  display: none !important;
+  height: 0px;
+}
+
+.post-preview-body p {
+ margin: 1em auto;
 }
 
 .header-section {
-  margin: auto 2px;
+  margin: auto 0.2em !important;
   margin-left: 0px;
   display: inline-block;
 }
+
+.header-section img {
+  vertical-align: middle;
+  margin-right: 2px;
+  height: 1em;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
